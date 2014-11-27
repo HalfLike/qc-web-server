@@ -1,14 +1,10 @@
-from flask import Flask
-
-app = Flask(__name__)
+#!/usr/bin/python
+#! -*- coding:utf-8 -*-
+from app import app
 
 @app.route('/')
 def index():
-    return "<span style='color:red'>I am app 1</span>"
-
-@app.route('/hello/')
-def hello():
-    return "hello flask and uwsgi"
+    return "<span style='color:red'>Welcom to HalfLike's world!</span>"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)
