@@ -11,4 +11,4 @@ def pr():
     return url_for('pr', aa=1, _external=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True)
