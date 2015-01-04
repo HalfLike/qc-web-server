@@ -22,7 +22,7 @@ def reply():
         "DeviceId":msg.DeviceId,
         "CreatedTime":time.strftime('%Y-%m-%d %H:%M',time.gmtime(beijing_time)),
         "MessageType":MyConst.MESSAGETYPE_NOT_RECEIVED,
-        "MessageBody":body
+        "MessageBody":Uincode(body)
     }
     reply_msg = Message(reply)
     db_session.add(reply_msg)
