@@ -26,6 +26,9 @@ class Message(Base):
             "MessageBody":self.MessageBody
         }
 
+    def __repr__(self):
+        return repr(self.get_json())
+
 
 class UserInfo(Base):
     __tablename__ = 'userinfo'
@@ -44,4 +47,7 @@ class UserInfo(Base):
             "UseTimes":self.UseTimes,
             "LastUseTime":self.LastUseTime
         }
+
+    def __repr__(self):
+        return repr(self.get_json())
 

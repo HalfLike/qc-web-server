@@ -21,20 +21,24 @@ def get_message():
         Message.query.filter(Message.MessageId == message.MessageId).\
             update({Message.MessageType:MyConst.MESSAGETYPE_RECEIVED})
         db_session.commit()
+        print message
     except AttributeError, e:
         resp = {'msg':'null', 'flag':'-1'}
     except Exception, e:
         resp = {'msg':'exception:%s' % e.message, 'flag':'-1'}
+    print resp
     return jsonify(resp)
 
 @app.route('/api/feedback', methods=['POST'])
 def feedback():
     resp = {'msg':'request params is error', 'flag':'-1'}
     if not request.json : 
+        print resp
         return jsonify(resp)
     try:
-        #init_db()
+        print 'raw requet :', request.json
         message = Message(request.json)
+        print 'put in db\'s data:', message
         db_session.add(message)
         db_session.commit()
         resp = {'msg':'feedback succeed', 'flag':'0'}
@@ -43,6 +47,7 @@ def feedback():
     except Exception, e:
         resp = {'msg':'operated database error, "%s"' % e.message, 'flag':'-1'}
     finally:
+        print resp
         return jsonify(resp)
 
 @app.route('/api/get_userinfo', methods = ['GET'])
@@ -55,16 +60,19 @@ def get_userinfo():
         resp = {'msg':'exception:%s' % e.message, 'flag':'-1'}
     if not userinfo:
         resp = {'msg':'null', 'flag':'-1'}
+    print resp
     return jsonify(resp)
 
 @app.route('/api/post_userinfo', methods=['POST'])
 def userinfo():
     resp = {'msg':'request params is error', 'flag':'-1'}
     if not request.json : 
+        print resp
         return jsonify(resp)
     try:
-        #init_db()
+        print 'raw requet :', request.json
         userinfo = UserInfo(request.json)
+        print 'put in db\'s data:', userinfo
         db_session.merge(userinfo)
         db_session.commit()
         resp = {'msg':'post userinfo succeed', 'flag':'0'}
@@ -73,4 +81,5 @@ def userinfo():
     except Exception, e:
         resp = {'msg':'operated database error, "%s"' % e.message, 'flag':'-1'}
     finally:
+        print resp
         return jsonify(resp)
