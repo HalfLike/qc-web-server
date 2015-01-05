@@ -53,7 +53,7 @@ def get_userinfo():
         resp = userinfo.get_json()
     except Exception, e:
         resp = {'msg':'exception:%s' % e.message, 'flag':'-1'}
-        if not userinfo:
+    if not userinfo:
         resp = {'msg':'null', 'flag':'-1'}
     return jsonify(resp)
 
