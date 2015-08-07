@@ -15,7 +15,7 @@ class Message(Base):
         self.DeviceId = json["DeviceId"]
         self.CreatedTime = json["CreatedTime"]
         self.MessageType = json["MessageType"]
-        self.MessageBody = json["MessageBody"].decode('utf-8')
+        self.MessageBody = json["MessageBody"]
 
     def get_json(self):
         return {
